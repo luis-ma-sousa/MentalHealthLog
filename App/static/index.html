@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mental Health Log</title>
+    <style>
+        :root {
+            --bg-light: #f9fafb;
+            --bg-dark: #111827;
+            --text-light: #111827;
+            --text-dark: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        body.light-mode {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .dark-mode .header {
+            background-color: var(--bg-dark);
+        }
+
+        .light-mode .header {
+            background-color: var(--bg-light);
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            touch-action: manipulation;
+        }
+
+        .theme-toggle-icon {
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .form-container {
+            padding: 1rem;
+            border-radius: 1rem;
+            transition: background-color 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+
+        .dark-mode .form-container {
+            background-color: #1f2937;
+        }
+
+        .light-mode .form-container {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .dark-mode input[type="text"],
+        .dark-mode input[type="datetime-local"],
+        .dark-mode textarea,
+        .dark-mode select {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: white;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 0.5rem 0;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: #d1d5db;
+        }
+
+        .dark-mode input[type="range"] {
+            background: #4b5563;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: none;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: none;
+        }
+
+        .feeling-labels {
+            position: relative;
+            width: 100%;
+            height: 70px;
+            margin-top: 1rem;
+            overflow: visible;
+        }
+        
+        @media (max-width: 380px) {
+            .feeling-labels {
+                font-size: 0.65rem;
+            }
+        }
+
+        .feeling-label {
+            position: absolute;
+            font-size: 0.75rem;
+            color: rgba(156, 163, 175, 0.6);
+            white-space: pre-line;
+            text-align: center;
+            transform-origin: center;
+            width: 50px;
+            transition: color 0.3s;
+            transform: translateX(-50%) rotate(-55deg);
+            top: 15px;
+        }
+
+        .feeling-label:nth-child(1) { left: 0; transform: translateX(0) rotate(-55deg); }
+        .feeling-label:nth-child(2) { left: 16.67%; }
+        .feeling-label:nth-child(3) { left: 33.33%; }
+        .feeling-label:nth-child(4) { left: 50%; }
+        .feeling-label:nth-child(5) { left: 66.67%; }
+        .feeling-label:nth-child(6) { left: 83.33%; }
+        .feeling-label:nth-child(7) { left: 100%; transform: translateX(-100%) rotate(-55deg); }
+
+        .feeling-label.active {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .light-mode .feeling-label {
+            color: rgba(75, 85, 99, 0.6);
+        }
+
+        .light-mode .feeling-label.active {
+            color: #111827;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 480px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: none;
+            background-color: #3b82f6;
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            touch-action: manipulation;
+            margin-top: 1rem;
+        }
+
+        button[type="button"] {
+            margin-top: 0.5rem;
+            background-color: #6b7280;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: none;
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            touch-action: manipulation;
+        }
+
+        button[type="submit"]:active {
+            background-color: #2563eb;
+            transform: translateY(1px);
+        }
+
+        .success-message {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background-color: #d1fae5;
+            border: 1px solid #6ee7b7;
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            display: none;
+            z-index: 1000;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .success-message {
+                font-size: 0.9rem;
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            input[type="text"],
+            textarea,
+            select,
+            button {
+                font-size: 16px;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            label {
+                margin-bottom: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Mental Health Log</h1>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span class="theme-toggle-icon">☀️</span>
+                <span class="theme-toggle-text">Switch to light mode</span>
+            </button>
+        </div>
+
+        <div class="form-container">
+            <form id="mentalHealthForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="currentDateTime">Date and Time</label>
+                    <div>
+                        <div id="currentDateTime"></div>
+                        <button type="button" id="dateTimeToggle" onclick="toggleCustomDateTime()">Customize</button>
+                    </div>
+                    <div id="customDateTime" class="hidden">
+                        <input type="datetime-local" id="customDateTimeInput">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="feeling">Overall Feeling</label>
+                    <input type="range" id="feeling" min="0" max="6" value="3"
+                           oninput="updateFeelingLabels(this.value)">
+                    <div class="feeling-labels" id="feelingLabels"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="emotion">Emotion</label>
+                    <select id="emotion" required>
+                        <option value="">Select an emotion</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="factors">Contributing Factors</label>
+                    <input type="text" id="factors"
+                           placeholder="What contributed to your current state?">
+                </div>
+
+                <div class="form-group">
+                    <label for="thoughts">Thoughts</label>
+                    <textarea id="thoughts"
+                            placeholder="What's on your mind?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="needs">Needs</label>
+                    <textarea id="needs"
+                            placeholder="What do you need right now?"></textarea>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="exercise">Exercise</label>
+                        <select id="exercise" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meditation">Meditation</label>
+                        <select id="meditation" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit">Save Entry</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="successMessage" class="success-message">
+        Your mental health log has been saved successfully!
+    </div>
+
+    <script>
+        const feelingLabels = [
+            'Very\nUnpleasant',
+            'Unpleasant',
+            'Slightly\nUnpleasant',
+            'Neutral',
+            'Slightly\nPleasant',
+            'Pleasant',
+            'Very\nPleasant'
+        ];
+
+        const emotions = [
+            'Joy', 'Love','Calm', 'Hope', 'Contentment', 'Surprise', 'Nostalgia',
+            'Sadness', 'Anger', 'Fear', 'Drained','Anxiety', 'Frustration'
+        ];
+
+        // Initialize emotions dropdown
+        const emotionSelect = document.getElementById('emotion');
+        emotions.forEach(emotion => {
+            const option = document.createElement('option');
+            option.value = emotion;
+            option.textContent = emotion;
+            emotionSelect.appendChild(option);
+        });
+
+        // Initialize feeling labels
+        function updateFeelingLabels(value) {
+            const container = document.getElementById('feelingLabels');
+            container.innerHTML = '';
+            
+            feelingLabels.forEach((label, index) => {
+                const span = document.createElement('span');
+                span.className = `feeling-label ${index === parseInt(value) ? 'active' : 'inactive'}`;
+                span.textContent = label;
+                container.appendChild(span);
+            });
+        }
+
+        // Initial call to set up feeling labels
+        updateFeelingLabels(3);
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeButton = document.querySelector('.theme-toggle');
+            const themeIcon = document.querySelector('.theme-toggle-icon');
+            const themeText = document.querySelector('.theme-toggle-text');
+            
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Switch to dark mode';
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Switch to light mode';
+            }
+        }
+
+        const updateCurrentDateTime = () => {
+            const now = new Date();
+            const formatted = now.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            }).replace(/\//g, '/');
+            document.getElementById('currentDateTime').textContent = formatted;
+        };
+
+        const toggleCustomDateTime = () => {
+            const customDateTimeDiv = document.getElementById('customDateTime');
+            const toggleButton = document.getElementById('dateTimeToggle');
+            const isHidden = customDateTimeDiv.classList.contains('hidden');
+
+            if (isHidden) {
+                customDateTimeDiv.classList.remove('hidden');
+                toggleButton.textContent = 'Use Current';
+                // Set the datetime-local input to current time
+                const now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+
+                // Format the date for the input
+                const day = String(now.getDate()).padStart(2, '0');
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const year = now.getFullYear();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+
+                document.getElementById('customDateTimeInput').value =
+                    `${year}-${month}-${day}T${hours}:${minutes}`;
+            } else {
+                customDateTimeDiv.classList.add('hidden');
+                toggleButton.textContent = 'Customize';
+            }
+        };
+
+        // Update current date time every second
+        updateCurrentDateTime();
+        setInterval(updateCurrentDateTime, 1000);
+
+        function getSelectedDateTime() {
+            const customDateTime = document.getElementById('customDateTime');
+            if (!customDateTime.classList.contains('hidden')) {
+                return new Date(document.getElementById('customDateTimeInput').value);
+            }
+            return new Date();
+        }
+
+        async function handleSubmit(event) {
+          event.preventDefault();
+
+          // Get the feeling text from the current slider value
+          const feelingValue = document.getElementById('feeling').value;
+          const feelingText = feelingLabels[parseInt(feelingValue)].replace('\n', ' ');
+
+          const formData = {
+              datetime: getSelectedDateTime().toISOString(),
+              feeling: feelingText,  // Send the text instead of the number
+              emotion: document.getElementById('emotion').value,
+              factors: document.getElementById('factors').value,
+              thoughts: document.getElementById('thoughts').value,
+              needs: document.getElementById('needs').value,
+              smoked: document.getElementById('exercise').value,
+              drank: document.getElementById('meditation').value
+          };
+
+          try {
+              const response = await fetch('/save-log', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(formData)
+              });
+
+              if (!response.ok) {
+                  const errorData = await response.json();
+                  throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+              }
+
+              // Show success message
+              const successMessage = document.getElementById('successMessage');
+              successMessage.style.display = 'block';
+
+              // Reset form
+              document.getElementById('mentalHealthForm').reset();
+              document.getElementById('feeling').value = 3;
+              updateFeelingLabels(3);
+
+              // Hide success message after 3 seconds
+              setTimeout(() => {
+                  successMessage.style.display = 'none';
+              }, 3000);
+
+          } catch (error) {
+              console.error('Error:', error);
+              alert('Failed to save log: ' + error.message);
+          }
+      }
+    </script>
+</body>
+</html>
