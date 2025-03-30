@@ -1,6 +1,7 @@
 # MentalHealthLog
 
 A full-stack web application for tracking mental health metrics and emotions. The application allows users to log their emotional state, contributing factors, and habits, sending the data via email in CSV format for record-keeping.
+Created with ❤️ for better mental health tracking.
 
 
 ## 🌐 Hosting & Access
@@ -160,6 +161,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - MDN Web Docs
 - Your contributions and feedback
 
----
 
-Created with ❤️ for better mental health tracking
+
+
