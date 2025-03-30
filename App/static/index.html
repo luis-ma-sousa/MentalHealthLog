@@ -6,7 +6,7 @@
     <title>Mental Health Log</title>
     <style>
         :root {
-            --bg-light: #f9fafb;
+            --bg-light: #ffffff;
             --bg-dark: #111827;
             --text-light: #111827;
             --text-dark: #ffffff;
@@ -32,8 +32,8 @@
         }
 
         body.light-mode {
-            background-color: var(--bg-light);
-            color: var(--text-light);
+            background-color: #ffffff !important;
+            color: #111827 !important;
         }
 
         .container {
@@ -59,7 +59,7 @@
         }
 
         .light-mode .header {
-            background-color: var(--bg-light);
+            background-color: #ffffff !important;
         }
 
         .title {
@@ -84,6 +84,14 @@
             cursor: pointer;
             font-size: 1rem;
             touch-action: manipulation;
+        }
+        
+        .dark-mode .theme-toggle {
+            color: var(--text-dark);
+        }
+        
+        .light-mode .theme-toggle {
+            color: var(--text-light);
         }
 
         .theme-toggle-icon {
@@ -308,6 +316,42 @@
             display: none;
         }
 
+        .footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid #374151;
+        }
+
+        .dark-mode .footer {
+            color: #9ca3af;
+            border-top-color: #374151;
+        }
+
+        .light-mode .footer {
+            color: #4b5563;
+            border-top-color: #e5e7eb;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-links a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
         @media (max-width: 480px) {
             .success-message {
                 font-size: 0.9rem;
@@ -410,6 +454,14 @@
                 <button type="submit">Save Entry</button>
             </form>
         </div>
+
+        <div class="footer">
+            <p>Designed and created by Luis Sousa</p>
+            <div class="social-links">
+                <a href="https://github.com/luis-ma-sousa" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/luis-ma-sousa31/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
     </div>
 
     <div id="successMessage" class="success-message">
@@ -466,11 +518,13 @@
             if (body.classList.contains('dark-mode')) {
                 body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
+                document.documentElement.style.backgroundColor = '#ffffff';
                 themeIcon.textContent = '🌙';
                 themeText.textContent = 'Switch to dark mode';
             } else {
                 body.classList.remove('light-mode');
                 body.classList.add('dark-mode');
+                document.documentElement.style.backgroundColor = '#111827';
                 themeIcon.textContent = '☀️';
                 themeText.textContent = 'Switch to light mode';
             }
