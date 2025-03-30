@@ -1,7 +1,7 @@
 # Mental Health Tracking Application
 
 A full-stack web application for tracking mental health metrics and emotions. The application allows users to log their emotional state, contributing factors, and habits, sending the data via email in CSV format for record-keeping.
----
+
 
 ## 🌐 Hosting & Access
 
