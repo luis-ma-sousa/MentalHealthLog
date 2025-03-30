@@ -1,6 +1,25 @@
 # Mental Health Tracking Application
 
 A full-stack web application for tracking mental health metrics and emotions. The application allows users to log their emotional state, contributing factors, and habits, sending the data via email in CSV format for record-keeping.
+---
+
+## 🌐 Hosting & Access
+
+This app is live and accessible via **Glitch**:  
+🔗 [https://mentalhealthlog.glitch.me/](https://mentalhealthlog.glitch.me/)
+
+You can try out the form directly in your browser — no installation required.
+
+---
+
+## 🔒 Mocked Environment
+
+⚠️ **Note:** This repository includes a mocked version of `app.py` and a `.env.example` file.  
+Sensitive credentials and production email settings have been replaced with placeholder values for public sharing and demonstration purposes.
+
+To run locally, rename `.env.example` to `.env` and add your own email credentials.
+
+---
 
 ## Features
 
