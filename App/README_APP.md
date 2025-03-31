@@ -1,8 +1,8 @@
-# MentalHealthLog
+# 📝 MentalHealthLog Web Application
 
 A full-stack web application for tracking mental health metrics and emotions. The application allows users to log their emotional state, contributing factors, and habits, sending the data via email in CSV format for record-keeping.
-Created with ❤️ for better mental health tracking.
 
+Created with ❤️ for better mental health tracking.
 
 ## 🌐 Hosting & Access
 
@@ -22,7 +22,7 @@ To run locally, rename `.env.example` to `.env` and add your own email credentia
 
 ---
 
-## Features
+## ✨ Features
 
 - 📝 Daily mental health logging
 - 🌓 Dark/Light theme toggle
@@ -32,7 +32,7 @@ To run locally, rename `.env.example` to `.env` and add your own email credentia
 - 📱 Responsive design for mobile and desktop
 - 🔒 Privacy-focused (data sent via email, not stored)
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 ### Backend
 - Python 3.x
@@ -51,12 +51,12 @@ To run locally, rename `.env.example` to `.env` and add your own email credentia
 - JSON for API communication
 - Environment Variables for Configuration
 
-## Installation
+## 📋 Installation
 
 1. Clone the repository:
 ```bash
-git clone <your-repository-url>
-cd mental-health-tracker
+git clone https://github.com/luis-ma-sousa/MentalHealthLog.git
+cd MentalHealthLog/App
 ```
 
 2. Create a virtual environment and activate it:
@@ -70,7 +70,7 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install flask flask-cors python-dotenv
 ```
 
-4. Create a `.env` file in the root directory with the following variables:
+4. Create a `.env` file in the App directory with the following variables:
 ```plaintext
 SENDER_EMAIL=your-email@gmail.com
 SENDER_PASSWORD=your-app-specific-password
@@ -79,7 +79,7 @@ SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
 ```
 
-## Running the Application
+## 🚀 Running the Application
 
 1. Start the Flask server:
 ```bash
@@ -91,7 +91,7 @@ python app.py
 http://localhost:3000
 ```
 
-## Usage
+## 📱 Usage
 
 1. Fill out the mental health questionnaire:
    - Select current date/time or customize
@@ -99,30 +99,33 @@ http://localhost:3000
    - Choose your current emotion
    - Add contributing factors
    - Note your thoughts and needs
-   - Log smoking and drinking status
+   - Log exercise and meditation status
 
 2. Submit the form to:
    - Generate a CSV report
    - Send an email with the data
    - Receive confirmation of submission
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-mental-health-tracker/
+App/
 │
 ├── app.py                 # Flask backend application
-├── .env                   # Environment variables
+├── app_mocked.py          # Mocked version for GitHub sharing
+├── .env                   # Environment variables (not included)
+├── .env.example           # Example environment file
 ├── requirements.txt       # Python dependencies
 │
 ├── static/
-│   ├── index.html        # Frontend application
-│   └── styles.css        # (Optional) Separated styles
+│   ├── index.html         # Frontend application
+│   ├── styles.css         # CSS styles
+│   └── scripts.js         # Frontend JavaScript
 │
-└── README.md             # This file
+└── README.md              # This file
 ```
 
-## Security Considerations
+## 🔐 Security Considerations
 
 - Environment variables used for sensitive data
 - No data stored on server
@@ -130,37 +133,28 @@ mental-health-tracker/
 - Input sanitization
 - CORS protection
 
-## Future Improvements
+## 🔄 Integration with Dashboard
+
+This app sends data via email, which is then processed by the [Analysis Dashboard](../Notebook/README.md) component. For information on how to set up the complete system, refer to the [main project README](../README.md).
+
+## 🚧 Future Improvements
 
 - Add user authentication
-- Implement data visualization
-- Add database storage option
-- Include export functionality
-- Add historical data viewing
-- Implement progress tracking
+- Implement export functionality
 - Add custom emotion/factor tags
 - Include crisis resources
 - Add coping strategy suggestions
 
-## Contributing
+## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
+## 📜 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is available for personal use.
 
-## Acknowledgments
+## 📚 Acknowledgments
 
 - Mental health resources and crisis hotlines
 - Flask documentation
 - MDN Web Docs
-- Your contributions and feedback
-
-
-
-
