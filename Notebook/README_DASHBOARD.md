@@ -1,8 +1,8 @@
-# 🧠 Mental Health Log Dashboard
+# 📊 Mental Health Log Dashboard
 
 A comprehensive tool for tracking, analyzing, and visualizing emotional well-being and activity patterns over time.
 
-## 📊 Overview
+## 📋 Overview
 
 This Mental Health Log Dashboard is a data analysis and visualization tool designed to help track emotional states, physical activities, and their correlations over time. The dashboard processes data collected through regular emotional logs and provides insightful visualizations and statistical analysis to help identify patterns and trends in mental well-being.
 
@@ -36,10 +36,15 @@ This Mental Health Log Dashboard is a data analysis and visualization tool desig
 - Required libraries: pandas, plotly, numpy, imaplib (for email functionality)
 
 ### 💻 Installation
-1. Clone this repository
-2. Install required packages:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/luis-ma-sousa/MentalHealthLog.git
+   cd MentalHealthLog/Notebook
    ```
-   pip install pandas plotly numpy openpyxl
+
+2. Install required packages:
+   ```bash
+   pip install pandas plotly numpy openpyxl jupyter
    ```
 
 ### ⚙️ Configuration
@@ -63,10 +68,17 @@ The dashboard expects CSV files with at least the following columns:
 - `Thoughts`: Additional notes or thoughts about the entry
 
 ### 🏃‍♂️ Running the Dashboard
-1. Execute the notebook cells sequentially
-2. If using email retrieval, the system will fetch new entries automatically
-3. Otherwise, place your CSV files in the designated folder
-4. The notebook will generate all visualizations and insights
+1. Start Jupyter Notebook:
+   ```bash
+   jupyter notebook
+   ```
+
+2. Open the `MentalHealthLog Dashboard.ipynb` file
+
+3. Execute the notebook cells sequentially:
+   - If using email retrieval, the system will fetch new entries automatically
+   - Otherwise, place your CSV files in the designated folder
+   - The notebook will generate all visualizations and insights
 
 ## 🔎 Interpreting Results
 
@@ -82,6 +94,14 @@ Identify recurring patterns in your emotional wellbeing:
 - Contributing factors most associated with positive or negative emotions
 - Day vs. night emotional differences
 
+## 📷 Example Visualizations
+
+For sample visualizations and analysis examples, see the [results gallery](../results-gallery.md) in the main project directory.
+
+## 🔄 Integration with Web App
+
+This dashboard is designed to work with the data collected by the [MentalHealthLog Web App](../App/README.md). For information on how to set up the complete system, refer to the [main project README](../README.md).
+
 ## 🔒 Data Privacy & Security
 
 This dashboard processes personal health information. Consider these security measures:
@@ -89,11 +109,23 @@ This dashboard processes personal health information. Consider these security me
 - Store raw data files securely
 - Consider encrypting sensitive data
 
+## 🚧 Future Improvements
+
+- Automated insights generation
+- Predictive analysis of mood patterns
+- Mobile-friendly dashboard version
+- Interactive filtering capabilities
+- Export reports as PDF
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📜 License
+
+This project is available for personal use.
+
 ## 👤 Author
 
 **Luís Sousa**  
 Contact: luis.95.sousa.31@gmail.com
-
-## 📜 License
-
-This project is for personal use.
