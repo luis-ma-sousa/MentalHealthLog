@@ -37,7 +37,7 @@ Location: `/Notebook` directory
 
 ## 📈 Sample Visualizations
 
-Want to see what insights you can gain? Check out the **[results gallery](./results-gallery.md)** for sample visualizations from the dashboard:
+Want to see what insights you can gain? Check out the **[results gallery](./Mock_results_gallery.md)** for sample visualizations from the dashboard:
 
 - Emotion distributions and mood timelines
 - Exercise and meditation impact analysis
