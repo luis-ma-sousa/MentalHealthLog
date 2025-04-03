@@ -43,8 +43,8 @@ def save_log():
             'factors',
             'thoughts',
             'needs',
-            'smoked',
-            'drank'
+            'exercise',
+            'meditation'
         ]
         
         if not all(field in data for field in required_fields):
@@ -69,8 +69,8 @@ def save_log():
             'Contributing Factors': str(data.get('factors', '')),
             'Thoughts': str(data.get('thoughts', '')),
             'Needs': str(data.get('needs', '')),
-            'Smoked': str(data.get('smoked', '')),
-            'Drank': str(data.get('drank', ''))
+            'Exercise': str(data.get('exercise', '')),
+            'Meditation': str(data.get('meditation', ''))
         }
         
         # Create CSV
