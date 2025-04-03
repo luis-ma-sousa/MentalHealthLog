@@ -21,7 +21,7 @@ Location: `/App` directory
 - Sends data via email in CSV format for privacy
 - Mobile-responsive design for logging on any device
 
-**[View App Details](./App/README.md)**
+**[View App Details](./App/README_APP.md)**
 
 ## 📊 Data Analysis Dashboard
 
