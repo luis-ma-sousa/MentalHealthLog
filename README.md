@@ -33,7 +33,7 @@ Location: `/Notebook` directory
 - Activity impact analysis for exercise and meditation
 - Contributing factors analysis to identify emotional triggers
 
-**[View Dashboard Details](./Notebook/README.md)**
+**[View Dashboard Details](./Notebook/README_DASHBOARD.md)**
 
 ## 📈 Sample Visualizations
 
