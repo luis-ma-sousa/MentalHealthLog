@@ -1,7 +1,5 @@
 # 🧠 MentalHealthLog Project
 
-## 🌐 **[Try The App Now:  https://mentalhealthlog.glitch.me/](https://mentalhealthlog.glitch.me/)**
-
 A full-stack solution for tracking, analyzing, and visualizing mental health data to identify patterns and improve well-being.
 
 ## 🌟 Project Overview
