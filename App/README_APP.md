@@ -4,12 +4,10 @@ A full-stack web application for tracking mental health metrics and emotions. Th
 
 Created with ❤️ for better mental health tracking.
 
-## 🌐 Hosting & Access
+## 🌐 Web interface
 
-This app is live and accessible via **Glitch**:  
-🔗 [https://mentalhealthlog.glitch.me/](https://mentalhealthlog.glitch.me/)
+<img width="462" height="895" alt="Screenshot 2025-10-18 at 15 51 06" src="https://github.com/user-attachments/assets/b5e71663-5b07-41af-a43d-50d606129a4d" />
 
-You can try out the form directly in your browser — no installation required.
 
 ---
 
